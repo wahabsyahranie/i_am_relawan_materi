@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1015827952399",
+    "project_id": "i-am-relawan-materi",
+    "storage_bucket": "i-am-relawan-materi.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1015827952399:android:6f7dfdb2f5ea236fd2447a",
+        "android_client_info": {
+          "package_name": "com.example.iam_relawan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDDiaUIhP5CF5xabHVyoVmt5Wg49RBVPo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
