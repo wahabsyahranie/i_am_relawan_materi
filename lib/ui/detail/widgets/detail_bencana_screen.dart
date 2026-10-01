@@ -11,12 +11,12 @@ class DetailBencanaScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final dataBencanaList = ref.watch(bencanaViewModelProvider);
-    final bencanaId = int.tryParse(id);
+    // final bencanaId = int.tryParse(id); // hapus
 
     return Scaffold(
       floatingActionButton: dataBencanaList.maybeWhen(
         data: (list) {
-          final matches = list.where((b) => b.id == bencanaId).toList();
+          final matches = list.where((b) => b.id == id).toList();
           if (matches.isEmpty) return null;
           final bencana = matches.first;
 

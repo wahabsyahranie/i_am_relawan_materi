@@ -20,7 +20,7 @@ class BencanaRepositoryImpl implements BencanaRepository {
             updatedAt: row['updatedAt'] as String,
             nameReporter: row['nameReporter'] as String,
             phoneNumber: row['phoneNumber'] as String,
-            id: row['id'] as int,
+            id: row['id'] as String,
           ),
         )
         .toList();
@@ -29,6 +29,7 @@ class BencanaRepositoryImpl implements BencanaRepository {
   @override
   Future<void> tambahBencana(BencanaList bencana) async {
     await _service.insertBencana({
+      'id': bencana.id,
       'name': bencana.name,
       'location': bencana.location,
       'description': bencana.description,
@@ -40,7 +41,7 @@ class BencanaRepositoryImpl implements BencanaRepository {
   }
 
   @override
-  Future<void> deleteBencana(int id) async {
+  Future<void> deleteBencana(String id) async {
     await _service.deleteBencana(id);
   }
 

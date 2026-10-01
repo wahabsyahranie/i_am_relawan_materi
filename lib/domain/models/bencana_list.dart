@@ -6,7 +6,7 @@ class BencanaList {
   String updatedAt;
   String nameReporter;
   String phoneNumber;
-  int? id; //Dari string menjadi id dan berikan operator ?
+  String? id; //Dari string menjadi id dan berikan operator ?
 
 
   BencanaList (

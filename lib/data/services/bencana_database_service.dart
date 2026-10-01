@@ -20,7 +20,7 @@ class BencanaDatabaseService {
       version: 1,
       onCreate: (db, version) {
         return db.execute(
-          '''CREATE TABLE bencana(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, location TEXT NOT NULL, description TEXT, createdAt TEXT NOT NULL, updatedAt TEXT NOT NULL, nameReporter TEXT NOT NULL, phoneNumber TEXT NOT NULL)''',
+          '''CREATE TABLE bencana(id TEXT PRIMARY KEY, name TEXT NOT NULL, location TEXT NOT NULL, description TEXT, createdAt TEXT NOT NULL, updatedAt TEXT NOT NULL, nameReporter TEXT NOT NULL, phoneNumber TEXT NOT NULL)''',
         );
       },
     );
@@ -31,18 +31,18 @@ class BencanaDatabaseService {
     return db.query('bencana', orderBy: 'createdAt DESC');
   }
 
-  Future<int> insertBencana(Map<String, dynamic> data) async {
+  Future<void> insertBencana(Map<String, dynamic> data) async {
     final db = await database;
-    return db.insert('bencana', data);
+    await db.insert('bencana', data);
   }
 
-  Future<void> deleteBencana(int id) async {
+  Future<void> deleteBencana(String id) async {
     final db = await database;
     await db.delete('bencana', where: 'id = ?', whereArgs: [id]);
   }
 
-  Future<int> updateBencana(int id, Map<String, dynamic> data) async {
+  Future<void> updateBencana(String id, Map<String, dynamic> data) async {
     final db = await database;
-    return db.update('bencana', data, where: 'id = ?', whereArgs: [id]);
+    await db.update('bencana', data, where: 'id = ?', whereArgs: [id]);
   }
 }

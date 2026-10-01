@@ -224,7 +224,7 @@ class DataBencanaCard extends StatelessWidget {
             'detail',
             pathParameters: {
               'id': dataBencana.id.toString(),
-            }, //Tambahkan toString karena id pada model menjadi int
+            }, 
           );
         },
         child: Padding(

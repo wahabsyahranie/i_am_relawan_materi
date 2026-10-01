@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iam_relawan/data/repositories/bencana_repository.dart';
 import 'package:iam_relawan/data/repositories/bencana_repository_impl.dart';
@@ -28,8 +29,10 @@ class BencanaViewModel extends AsyncNotifier<List<BencanaList>> {
     try {
       final repository = ref.read(bencanaRepositoryProvider);
       final now = DateTime.now().toString();
+      final uniqueId = FirebaseFirestore.instance.collection('bencana').doc().id;
       await repository.tambahBencana(
         BencanaList(
+          id: uniqueId,
           name: name,
           location: location,
           description: description,
@@ -46,7 +49,7 @@ class BencanaViewModel extends AsyncNotifier<List<BencanaList>> {
     }
   }
 
-  Future<bool> deleteBencana(int id) async {
+  Future<bool> deleteBencana(String id) async {
     try {
       final repository = ref.read(bencanaRepositoryProvider);
       await repository.deleteBencana(id);
@@ -61,7 +64,7 @@ class BencanaViewModel extends AsyncNotifier<List<BencanaList>> {
   }
 
   Future<bool> updateBencana({
-    required int id,
+    required String id,
     required String createdAt,
     required String name,
     required String location,
