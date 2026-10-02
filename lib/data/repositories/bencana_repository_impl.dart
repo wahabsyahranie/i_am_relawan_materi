@@ -8,6 +8,20 @@ class BencanaRepositoryImpl implements BencanaRepository {
   final BencanaDatabaseService _service;
 
   @override
+  Future<void> tambahBencana(BencanaList bencana) async {
+    await _service.insertBencana({
+      'id': bencana.id,
+      'name': bencana.name,
+      'location': bencana.location,
+      'description': bencana.description,
+      'createdAt': bencana.createdAt,
+      'updatedAt': bencana.updatedAt,
+      'nameReporter': bencana.nameReporter,
+      'phoneNumber': bencana.phoneNumber,
+    });
+  }
+
+  @override
   Future<List<BencanaList>> getAllBencana() async {
     final rows = await _service.getAllBencana();
     return rows
@@ -27,20 +41,6 @@ class BencanaRepositoryImpl implements BencanaRepository {
   }
 
   @override
-  Future<void> tambahBencana(BencanaList bencana) async {
-    await _service.insertBencana({
-      'id': bencana.id,
-      'name': bencana.name,
-      'location': bencana.location,
-      'description': bencana.description,
-      'createdAt': bencana.createdAt,
-      'updatedAt': bencana.updatedAt,
-      'nameReporter': bencana.nameReporter,
-      'phoneNumber': bencana.phoneNumber,
-    });
-  }
-
-  @override
   Future<void> deleteBencana(String id) async {
     await _service.deleteBencana(id);
   }
@@ -57,4 +57,5 @@ class BencanaRepositoryImpl implements BencanaRepository {
       'phoneNumber': bencana.phoneNumber,
     });
   }
+
 }

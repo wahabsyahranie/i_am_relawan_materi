@@ -1,13 +1,16 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iam_relawan/data/repositories/bencana_repository.dart';
+import 'package:iam_relawan/data/repositories/bencana_repository_firebase_impl.dart';
 import 'package:iam_relawan/data/repositories/bencana_repository_impl.dart';
 import 'package:iam_relawan/data/services/bencana_database_service.dart';
+import 'package:iam_relawan/data/services/bencana_firestore_service.dart';
 import 'package:iam_relawan/domain/models/bencana_list.dart';
+import 'package:uuid/uuid.dart';
 
 // Menginisiasi repositori yang digunakan
 final bencanaRepositoryProvider = Provider<BencanaRepository>((ref) {
-  return BencanaRepositoryImpl(BencanaDatabaseService.instance);
+  return BencanaRepositoryImpl(BencanaDatabaseService.instance); //nonaktif dulu SQL
+  // return BencanaRepositoryFirebaseImpl(BencanaFirestoreService());
 });
 
 // Membuat viewmodel untuk mengambil data
@@ -19,6 +22,8 @@ class BencanaViewModel extends AsyncNotifier<List<BencanaList>> {
     return repository.getAllBencana();
   }
 
+  final _uuid = Uuid();
+
   Future<bool> tambahBencana({
     required String name,
     required String location,
@@ -29,7 +34,7 @@ class BencanaViewModel extends AsyncNotifier<List<BencanaList>> {
     try {
       final repository = ref.read(bencanaRepositoryProvider);
       final now = DateTime.now().toString();
-      final uniqueId = FirebaseFirestore.instance.collection('bencana').doc().id;
+      final uniqueId = _uuid.v4();
       await repository.tambahBencana(
         BencanaList(
           id: uniqueId,
