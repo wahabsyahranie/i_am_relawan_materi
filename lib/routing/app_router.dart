@@ -4,7 +4,7 @@ import 'package:iam_relawan/ui/bencana/widgets/daftar_bencana_screen.dart';
 import 'package:iam_relawan/ui/bencana/widgets/edit_bencana_screen.dart';
 import 'package:iam_relawan/ui/bencana/widgets/form_bencana_screen.dart';
 import 'package:iam_relawan/ui/core/ui/splash_screen.dart';
-import 'package:iam_relawan/ui/detail/widgets/detail_bencana_screen.dart';
+import 'package:iam_relawan/ui/bencana/widgets/detail_bencana_screen.dart';
 
 final router = GoRouter(
   initialLocation: '/splash-screen',
