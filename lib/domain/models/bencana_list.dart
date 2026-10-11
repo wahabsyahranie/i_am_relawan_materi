@@ -6,20 +6,20 @@ class BencanaList {
   String updatedAt;
   String nameReporter;
   String phoneNumber;
-  String? id; //Dari string menjadi id dan berikan operator ?
+  String? id;
+  bool isSynced; // Tambahkan isSynced sebagai flag sinkronisasi
+  bool isDeleted; // Tambahkan isSynced sebagai flag soft delete
 
-
-  BencanaList (
-    {
-      required this.name,
-      required this.location,
-      required this.description,
-      required this.createdAt,
-      required this.updatedAt,
-      required this.nameReporter,
-      required this.phoneNumber,
-      this.id, //Hapus required, karena id akan dibuat oleh database otomatis
-    }
-  );
+  BencanaList({
+    required this.name,
+    required this.location,
+    required this.description,
+    required this.createdAt,
+    required this.updatedAt,
+    required this.nameReporter,
+    required this.phoneNumber,
+    this.id,
+    this.isSynced = false, // atur default false
+    this.isDeleted = false, // atur default false
+  });
 }
-
